@@ -1,0 +1,475 @@
+/* ===============================
+   LOGIN UI (Next Level) — CLEAN FULL REPLACEMENT
+================================ */
+
+/* Theme variables */
+:root {
+  --brand: #6d1447;
+  --brand2: #1f2f5e;
+
+  --bg1: #f5f6fb;
+  --bg2: #eef1f7;
+
+  --text: #0f172a;
+  --muted: #64748b;
+
+  --border: #e2e8f0;
+  --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+
+  --danger-bg: #fff1f2;
+  --danger-border: #fecdd3;
+  --danger-text: #9f1239;
+
+  --success-bg: #ecfdf5;
+  --success-border: #a7f3d0;
+  --success-text: #047857;
+}
+
+/* Base layout */
+.loginPage {
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(900px 380px at 10% 10%, rgba(109, 20, 71, 0.12), transparent 60%),
+    radial-gradient(900px 380px at 90% 20%, rgba(31, 47, 94, 0.12), transparent 60%),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+  display: flex;
+  flex-direction: column;
+}
+
+/* Topbar */
+.loginTopbar {
+  padding: 14px 22px;
+  background: linear-gradient(90deg, var(--brand), #7b1a52);
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.loginBrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(6px);
+}
+
+.brandTitle {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.brandSub {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+/* Topbar corner button (Admin/User switch) */
+.cornerBtn {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 12px;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.cornerBtn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+/* Center content */
+.loginWrap {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+}
+
+/* Card */
+.loginCard {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 18px;
+  padding: 26px 26px 20px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative blobs */
+.loginCard::before {
+  content: "";
+  position: absolute;
+  inset: -60px -60px auto auto;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(109, 20, 71, 0.18), transparent 65%);
+  transform: rotate(20deg);
+}
+
+.loginCard::after {
+  content: "";
+  position: absolute;
+  inset: auto auto -70px -70px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(31, 47, 94, 0.16), transparent 65%);
+  transform: rotate(-10deg);
+}
+
+/* Keep text above decorations */
+.loginHeading,
+.loginHint,
+.loginForm,
+.loginError,
+.loginSuccess,
+.roleList,
+.miniBadge,
+.idBox {
+  position: relative;
+  z-index: 1;
+}
+
+.loginHeading {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.loginHint {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Alerts */
+.loginError {
+  margin-top: 14px;
+  padding: 10px 12px;
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+  color: var(--danger-text);
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.loginSuccess {
+  margin-top: 14px;
+  padding: 10px 12px;
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+  color: var(--success-text);
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/* Form */
+.loginForm {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loginForm label {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0b1220;
+}
+
+/* Input wrapper (for password show/hide button) */
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.loginForm input {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  outline: none;
+  background: rgba(248, 250, 252, 0.9);
+  font-size: 14px;
+  transition: 0.18s ease;
+}
+
+.loginForm input:focus {
+  background: #fff;
+  border-color: rgba(109, 20, 71, 0.6);
+  box-shadow: 0 0 0 4px rgba(109, 20, 71, 0.12);
+}
+
+/* Password eye button */
+.eyeBtn {
+  position: absolute;
+  right: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 10px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+}
+
+.eyeBtn:hover {
+  background: rgba(148, 163, 184, 0.18);
+}
+
+/* Buttons */
+.btnPrimary {
+  margin-top: 8px;
+  width: 100%;
+  border: none;
+  padding: 12px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  color: #fff;
+  background: linear-gradient(90deg, var(--brand2), #1b3a75);
+  box-shadow: 0 12px 22px rgba(31, 47, 94, 0.22);
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.btnPrimary:hover {
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+}
+
+.btnPrimary:active {
+  transform: translateY(0);
+}
+
+.btnGhost {
+  width: 100%;
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--border);
+  color: #334155;
+  padding: 11px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 900;
+  transition: 0.15s ease;
+}
+
+.btnGhost:hover {
+  background: #fff;
+  box-shadow: 0 10px 18px rgba(15, 23, 42, 0.06);
+  transform: translateY(-1px);
+}
+
+/* Link-style button (Forgot password) */
+.btnLink {
+  border: none;
+  background: transparent;
+  color: var(--brand);
+  font-weight: 900;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.btnLink:hover {
+  text-decoration: underline;
+}
+
+/* SelectLogin role list */
+.roleList {
+  margin-top: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.roleCard {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.86);
+  border-radius: 14px;
+  padding: 14px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+
+.roleCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(15, 23, 42, 0.08);
+  background: #fff;
+}
+
+.roleLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.roleIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  color: #fff;
+}
+
+.roleUser {
+  background: linear-gradient(135deg, var(--brand2), #274b92);
+}
+
+.roleAdmin {
+  background: linear-gradient(135deg, var(--brand), #8a1b5a);
+}
+
+.roleText h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.roleText p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.roleArrow {
+  font-size: 22px;
+  color: #94a3b8;
+  font-weight: 900;
+}
+
+/* Small badge inside card */
+.miniBadge {
+  background: #f3f4ff;
+  border: 1px solid #e6e8ff;
+  color: #1f2a5a;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  margin: 10px 0 12px 0;
+  font-weight: 800;
+}
+
+/* helper text below fields */
+.fieldHelp {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Create ID chooser box */
+.idBox {
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fbfdff;
+}
+
+.idBoxLabel {
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--brand);
+  margin-bottom: 10px;
+  letter-spacing: 0.2px;
+}
+
+.idList {
+  display: grid;
+  gap: 10px;
+}
+
+.idItem {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.idItem:hover {
+  border-color: #cfd6df;
+  background: #f9fafb;
+}
+
+.idItem input {
+  transform: scale(1.05);
+}
+
+.idText {
+  font-weight: 800;
+  color: #111827;
+  font-size: 13px;
+}
+
+.idBoxHint {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Footer */
+.loginFooter {
+  text-align: center;
+  padding: 14px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Responsive tweaks */
+@media (max-width: 520px) {
+  .loginTopbar {
+    padding: 12px 14px;
+  }
+  .loginCard {
+    padding: 20px 16px 16px;
+  }
+  .cornerBtn {
+    padding: 9px 10px;
+    font-size: 11px;
+  }
+}
